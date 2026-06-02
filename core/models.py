@@ -1,4 +1,4 @@
-"""Data models and enumerations for AutoStartCodex."""
+"""Data models and enumerations for CodexSwitch."""
 
 from __future__ import annotations
 

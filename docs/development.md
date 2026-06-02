@@ -1,4 +1,4 @@
-﻿# CodexSwitch Development Notes
+# CodexSwitch Development Notes
 
 > Version: v1.0.6 | Updated: 2026-06-02
 
