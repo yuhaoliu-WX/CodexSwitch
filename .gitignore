@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Build
+build/
+dist/
+*.spec
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Tool config (user-specific, regenerated on first run)
+config.yaml
