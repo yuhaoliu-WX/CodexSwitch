@@ -1,6 +1,6 @@
 # CodexSwitch Development Notes
 
-> Version: v1.0.6 | Updated: 2026-06-02
+> Version: v1.0.1 | Updated: 2026-06-02
 
 ## Design Decisions
 
@@ -42,7 +42,7 @@ User clicks "Switch to DeepSeek" for the first time:
 - Before OpenAI: check config-openai.toml has no moonbridge residual
 - If missing: prompt user to configure in Codex first, then save config file
 
-### Switch flow (v1.0.6+)
+### Switch flow (v1.0.1)
 
 User clicks Switch to X:
   1. Check if already on target profile (skip if yes)
@@ -54,18 +54,18 @@ User clicks Switch to X:
 
 No auto-launch. User always starts Codex manually after switch.
 
-### Quit flow (v1.0.4+)
+### Quit flow (v1.0.1)
 
 - Window close (x): withdraw() to tray, Moon Bridge keeps running
 - Quit button: dialog with Exit (stop MB + quit) or Minimize to Tray
 - Tray Exit: direct quit, stops MB, no dialog
 
-### Theme system (v1.0.2+)
+### Theme system (v1.0.1)
 
 app/theme.py exports LIGHT and DARK dicts. All colors and fonts driven
 from theme. Current theme selected at top of ui.py via THEME = LIGHT.
 
-### Encoding (v1.0.6+)
+### Encoding (v1.0.1)
 
 All source files must be UTF-8 without BOM. Use PowerShell:
 ```powershell
@@ -73,13 +73,27 @@ $utf8NoBom = New-Object System.Text.UTF8Encoding $false
 [System.IO.File]::WriteAllText($path, $content, $utf8NoBom)
 ```
 
+### Moon Bridge stdout reader thread (v0.9)
+
+`_wait_for_ready` originally blocked on `readline()` waiting for stdout output.
+Fixed by moving stdout reading to a background daemon thread (`_reader_loop`),
+so `_wait_for_ready` only polls TCP port and process status — never blocks.
+
+### Quit callback naming (v0.9)
+
+Instance attribute `self._on_quit` was shadowing the `_on_quit()` method.
+Renamed to `self._quit_callback` and `_handle_quit()`. Quit now always
+stops Moon Bridge first.
+
 ## Coding Conventions
 
-- from __future__ import annotations for lazy evaluation
+- `from __future__ import annotations` for lazy evaluation
 - Full type annotations, core functions have docstrings
-- Heavy operations in background threads, after(0, ...) for safe UI updates
+- Heavy operations in background threads, `after(0, ...)` for safe UI updates
 - English UI strings (avoid encoding issues)
-- Use _switch_aborted flag to prevent double-cleanup in threaded switch flow
+- Use `_switch_aborted` flag to prevent double-cleanup in threaded switch flow
+  (e.g. when Moon Bridge path is not set during switch, abort flag prevents
+   conflicting state resets from switch logic and error handlers)
 
 ## Manual Test Scenarios
 

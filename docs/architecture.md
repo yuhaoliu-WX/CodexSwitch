@@ -1,6 +1,6 @@
 # CodexSwitch Architecture
 
-> Version: v1.0.6 | Updated: 2026-06-02
+> Version: v1.0.1 | Updated: 2026-06-02
 
 ## Overview
 
@@ -53,7 +53,7 @@ CodexSwitch/
 | Module | Framework | Responsibility |
 |--------|-----------|---------------|
 | ui.py | customtkinter | Main window: status, buttons, log, settings |
-| tray.py | pystray | System tray right-click menu |
+| tray.py | pystray | System tray right-click menu + left-click show window |
 | theme.py | - | LIGHT / DARK theme dicts, font constants |
 
 ## Key flows
@@ -102,6 +102,12 @@ Results are cached for 2 seconds. Never blocks the UI thread.
 - Health check: TCP connect to 127.0.0.1:38440 (0.3s timeout)
 - Codex kill: taskkill /F /IM codex.exe
 - Codex launch: shell command (App Execution Alias) first, binary fallback
+
+### Same-profile skip
+
+If the user clicks "Switch to DeepSeek" while already on DeepSeek,
+the tool only manages Moon Bridge (start if stopped) without touching
+Codex config or restarting Codex.
 
 ### Quit flow
 
