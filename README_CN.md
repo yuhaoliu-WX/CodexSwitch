@@ -3,6 +3,8 @@
 一键切换 Codex 配置，自动管理 Moon Bridge 进程。
 
 ---
+官方提供的 Codex + DeepSeek 接入指南 详细说明了如何通过 Moon Bridge 配置 Codex——包括克隆项目、配置 API 密钥、运行 go run 以及生成 Codex 配置文件。但是在 OpenAI 和 DeepSeek 之间切换时，需要手动替换 config.toml、管理 Moon Bridge 的终端进程。而 CodexSwitch 则能将整个流程自动化，实现一键切换，方便随时想切换接入api的用户。
+最后提一句deepseek价格真的香，虽然困难任务比不上gpt或claude，但是简单的还是挺划算的。
 
 ## 功能特性
 
