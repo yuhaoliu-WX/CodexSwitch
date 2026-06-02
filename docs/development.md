@@ -1,4 +1,4 @@
-# AutoStartCodex Development Notes
+﻿# CodexSwitch Development Notes
 
 > Version: v1.0.6 | Updated: 2026-06-02
 
@@ -19,17 +19,17 @@
 |      | **Bugfix: Codex launch priority**       | v1.0.1  | 闂?    |
 |      | **Bugfix: UI double-cleanup (lag)**     | v1.0.1  | 闂?    |
 |      | **Bugfix: File encoding corruption**    | v1.0.1  | 闂?    |
-| F11 | PyInstaller single exe bundle           | v1.1    | 濠碘槅鍋撶徊浠嬪疮椤栫偛绠?    |
-| F12 | Persistent log files                    | v1.1    | 濠碘槅鍋撶徊浠嬪疮椤栫偛绠?    |
-| F13 | Windows notification errors             | v1.1    | 濠碘槅鍋撶徊浠嬪疮椤栫偛绠?    |
+| F11 | PyInstaller single exe bundle           | v1.1    | 濠电姷顣藉Σ鍛村磻閹捐泛绶ゅù鐘差儏閻ゎ喗銇勯弽顐粶缂?    |
+| F12 | Persistent log files                    | v1.1    | 濠电姷顣藉Σ鍛村磻閹捐泛绶ゅù鐘差儏閻ゎ喗銇勯弽顐粶缂?    |
+| F13 | Windows notification errors             | v1.1    | 濠电姷顣藉Σ鍛村磻閹捐泛绶ゅù鐘差儏閻ゎ喗銇勯弽顐粶缂?    |
 |      | **Lag fix: background health check**   | v1.0.2  | 闂?    |
 |      | **Close 闂?tray, Quit 闂?full exit**     | v1.0.2  | 闂?    |
 |      | **Light theme + landscape layout**     | v1.0.2  | 闂?    |
 |      | **Theme system (app/theme.py)**        | v1.0.2  | 闂?    |
-| F11 | PyInstaller single exe bundle           | v1.1    | 濠碘槅鍋撶徊浠嬪疮椤栫偛绠?    |
-| F12 | Persistent log files                    | v1.1    | 濠碘槅鍋撶徊浠嬪疮椤栫偛绠?    |
-| F13 | Windows notification errors             | v1.1    | 濠碘槅鍋撶徊浠嬪疮椤栫偛绠?    |
-| F14 | Multi-profile visual editor             | v1.2    | 濠碘槅鍋撶徊浠嬪疮椤栫偛绠?    |
+| F11 | PyInstaller single exe bundle           | v1.1    | 濠电姷顣藉Σ鍛村磻閹捐泛绶ゅù鐘差儏閻ゎ喗銇勯弽顐粶缂?    |
+| F12 | Persistent log files                    | v1.1    | 濠电姷顣藉Σ鍛村磻閹捐泛绶ゅù鐘差儏閻ゎ喗銇勯弽顐粶缂?    |
+| F13 | Windows notification errors             | v1.1    | 濠电姷顣藉Σ鍛村磻閹捐泛绶ゅù鐘差儏閻ゎ喗銇勯弽顐粶缂?    |
+| F14 | Multi-profile visual editor             | v1.2    | 濠电姷顣藉Σ鍛村磻閹捐泛绶ゅù鐘差儏閻ゎ喗銇勯弽顐粶缂?    |
 
 ## Design Decisions
 
@@ -144,14 +144,15 @@ User clicks "Switch to DeepSeek" for the first time
   was overwriting the method, so Quit button only called pp.quit() without
   stopping Moon Bridge.
 - **Quit dialog**: _show_quit_dialog() opens a CTkToplevel with two buttons:
-  Exit (_handle_quit) and Minimize to Tray (withdraw). 闁?button still calls
+  Exit (_handle_quit) and Minimize to Tray (withdraw). 闂?button still calls
   withdraw without dialog.
 - **Tray Exit**: binds to _handle_quit (direct exit, no dialog).
 
 ### v1.0.3 changes
 
 - **GBK decode fix**: subprocess.Popen now uses binary mode (	ext=False).
-  _wait_for_ready decodes eadline() output with utf-8 +
+  _wait_for_ready decodes 
+eadline() output with utf-8 +
   errors='replace', never crashes on non-ASCII output.
 - **Codex launch**: no longer relies on proc.wait() exit code. Uses
   is_running() (process table scan) before and after launch attempt to

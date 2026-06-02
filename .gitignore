@@ -4,14 +4,13 @@ __pycache__/
 *.pyo
 *.egg-info/
 
-# Build
-build/
+# Build artifacts (keep .spec for reproducible builds)
 dist/
-*.spec
+build/
 
 # OS
 Thumbs.db
 .DS_Store
 
-# Tool config (user-specific, regenerated on first run)
+# User config (regenerated on first run)
 config.yaml

@@ -1,181 +1,118 @@
-# CodexSwitch
+﻿# CodexSwitch
 
-一键切换 Codex 配置，自动管理 Moon Bridge 进程。
-
+娑撯偓闁款喖鍨忛幑?Codex 闁板秶鐤嗛敍宀冨殰閸斻劎顓搁悶?Moon Bridge 鏉╂稓鈻奸妴?
 ![screenshot](https://img.shields.io/badge/platform-Windows-blue)
 ![version](https://img.shields.io/badge/version-1.0.6-green)
 
 ---
 
-## 简介
-
-CodexSwitch 是一个 Windows 桌面工具，解决在 **OpenAI** 和 **DeepSeek (via Moon Bridge)** 之间频繁切换 Codex 配置的痛点。
-
-| 场景 | 之前（手动） | 现在（一键） |
+## 缁犫偓娴?
+CodexSwitch 閺勵垯绔存稉?Windows 濡楀矂娼板銉ュ徔閿涘矁袙閸愬啿婀?**OpenAI** 閸?**DeepSeek (via Moon Bridge)** 娑斿妫挎０鎴犵畳閸掑洦宕?Codex 闁板秶鐤嗛惃鍕閻愬箍鈧?
+| 閸︾儤娅?| 娑斿澧犻敍鍫熷閸旑煉绱?| 閻滄澘婀敍鍫滅闁款噯绱?|
 |------|-------------|-------------|
-| 从 OpenAI 切到 DeepSeek | 开 PowerShell → go run Moon Bridge → 新窗口复制 config → 重启 Codex | 点一下按钮，全部自动完成 |
-| 从 DeepSeek 切回 OpenAI | 复制 config → 重启 Codex | 点一下按钮 |
-| Moon Bridge 管理 | 单独开窗口保持运行 | 后台自动管理，带健康检查 |
+| 娴?OpenAI 閸掑洤鍩?DeepSeek | 瀵偓 PowerShell 閳?go run Moon Bridge 閳?閺傛壆鐛ラ崣锝咁槻閸?config 閳?闁插秴鎯?Codex | 閻愰€涚娑撳瀵滈柦顕嗙礉閸忋劑鍎撮懛顏勫З鐎瑰本鍨?|
+| 娴?DeepSeek 閸掑洤娲?OpenAI | 婢跺秴鍩?config 閳?闁插秴鎯?Codex | 閻愰€涚娑撳瀵滈柦?|
+| Moon Bridge 缁狅紕鎮?| 閸楁洜瀚鈧粣妤€褰涙穱婵囧瘮鏉╂劘顢?| 閸氬骸褰撮懛顏勫З缁狅紕鎮婇敍灞界敨閸嬨儱鎮嶅Λ鈧弻?|
 
 ---
 
-## 功能
-
-- **一键切换配置**：在 OpenAI 和 DeepSeek 配置间切换，自动备份当前配置
-- **Moon Bridge 自动管理**：自动编译 `moonbridge.exe` → 后台启动 → TCP 健康检查 → 一键停止
-- **路径发现**：首次使用引导选择 Moon Bridge 目录，验证完整性后永久保存
-- **智能切换**：检测 Codex 运行状态，切换配置前提示保存工作，切换后提示手动启动
-- **系统托盘**：常驻托盘，左键显示窗口，右键快速操作
-- **开机自启**：通过 Windows 注册表实现
-- **不依赖 Python 环境**：打包为独立 exe，双击运行
-
+## 閸旂喕鍏?
+- **娑撯偓闁款喖鍨忛幑銏ゅ帳缂?*閿涙艾婀?OpenAI 閸?DeepSeek 闁板秶鐤嗛梻鏉戝瀼閹诡澁绱濋懛顏勫З婢跺洣鍞よぐ鎾冲闁板秶鐤?- **Moon Bridge 閼奉亜濮╃粻锛勬倞**閿涙俺鍤滈崝銊х椽鐠?`moonbridge.exe` 閳?閸氬骸褰撮崥顖氬З 閳?TCP 閸嬨儱鎮嶅Λ鈧弻?閳?娑撯偓闁款喖浠犲?- **鐠侯垰绶為崣鎴犲箛**閿涙岸顩诲▎鈥插▏閻劌绱╃€靛ジ鈧瀚?Moon Bridge 閻╊喖缍嶉敍宀勭崣鐠囦礁鐣弫瀛樷偓褍鎮楀闀愮畽娣囨繂鐡?- **閺呴缚鍏橀崚鍥ㄥ床**閿涙碍顥呭ù?Codex 鏉╂劘顢戦悩鑸碘偓渚婄礉閸掑洦宕查柊宥囩枂閸撳秵褰佺粈杞扮箽鐎涙ê浼愭担婊愮礉閸掑洦宕查崥搴㈠絹缁€鐑樺閸斻劌鎯庨崝?- **缁崵绮洪幍妯兼磸**閿涙艾鐖舵す缁樺閻╂﹫绱濆锕傛暛閺勫墽銇氱粣妤€褰涢敍灞藉礁闁款喖鎻╅柅鐔告惙娴?- **瀵偓閺堥缚鍤滈崥?*閿涙岸鈧俺绻?Windows 濞夈劌鍞界悰銊ョ杽閻?- **娑撳秳绶风挧?Python 閻滎垰顣?*閿涙碍澧﹂崠鍛礋閻欘剛鐝?exe閿涘苯寮婚崙鏄忕箥鐞?
 ---
 
-## 下载
-
-已编译好的 exe 位于项目目录：
-
+## 娑撳娴?
+瀹歌尙绱拠鎴濄偨閻?exe 娴ｅ秳绨い鍦窗閻╊喖缍嶉敍?
 ```
-F:\VibeCoding\AutoStartCodex\dist\CodexSwitch.exe
+F:\VibeCoding\CodexSwitch\dist\CodexSwitch.exe
 ```
 
-双击即可运行。所有配置保存在 `~/.codex-switcher/config.yaml`。
-
+閸欏苯鍤崡鍐插讲鏉╂劘顢戦妴鍌涘閺堝鍘ょ純顔荤箽鐎涙ê婀?`~/.codex-switcher/config.yaml`閵?
 ---
 
-## 使用方法
+## 娴ｈ法鏁ら弬瑙勭《
 
-### 首次运行
+### 妫ｆ牗顐兼潻鎰攽
 
-1. 双击 `CodexSwitch.exe`
-2. 点击 **Switch to DeepSeek**
-3. 如果尚未配置 Moon Bridge 路径，会弹出文件夹选择对话框
-4. 选择你的 Moon Bridge 项目目录（包含 `config.yml`、`cmd/moonbridge/`、`go.mod` 的文件夹）
-5. 工具会自动编译 `moonbridge.exe` 并启动，切换配置，提示你手动启动 Codex
+1. 閸欏苯鍤?`CodexSwitch.exe`
+2. 閻愮懓鍤?**Switch to DeepSeek**
+3. 婵″倹鐏夌亸姘弓闁板秶鐤?Moon Bridge 鐠侯垰绶為敍灞肩窗瀵懓鍤弬鍥︽婢跺綊鈧瀚ㄧ€电鐦藉?4. 闁瀚ㄦ担鐘垫畱 Moon Bridge 妞ゅ湱娲伴惄顔肩秿閿涘牆瀵橀崥?`config.yml`閵嗕梗cmd/moonbridge/`閵嗕梗go.mod` 閻ㄥ嫭鏋冩禒璺恒仚閿?5. 瀹搞儱鍙挎导姘冲殰閸斻劎绱拠?`moonbridge.exe` 楠炶泛鎯庨崝顭掔礉閸掑洦宕查柊宥囩枂閿涘本褰佺粈杞扮稑閹靛濮╅崥顖氬З Codex
 
-### 日常使用
+### 閺冦儱鐖舵担璺ㄦ暏
 
-| 操作 | 行为 |
+| 閹垮秳缍?| 鐞涘奔璐?|
 |------|------|
-| **Switch to OpenAI** | 切换配置 → 提示手动启动 Codex |
-| **Switch to DeepSeek** | 启动 Moon Bridge（如需）→ 切换配置 → 提示手动启动 Codex |
-| **Stop Moon Bridge** | 停止 Moon Bridge 进程 |
-| **窗口 ×** | 隐藏到系统托盘 |
-| **Quit 按钮** | 弹窗选择「退出」或「最小化到托盘」 |
-| **托盘左键** | 显示窗口 |
-| **托盘右键** | 快速切换 / 退出 |
+| **Switch to OpenAI** | 閸掑洦宕查柊宥囩枂 閳?閹绘劗銇氶幍瀣З閸氼垰濮?Codex |
+| **Switch to DeepSeek** | 閸氼垰濮?Moon Bridge閿涘牆顩ч棁鈧敍澶嗗晪 閸掑洦宕查柊宥囩枂 閳?閹绘劗銇氶幍瀣З閸氼垰濮?Codex |
+| **Stop Moon Bridge** | 閸嬫粍顒?Moon Bridge 鏉╂稓鈻?|
+| **缁愭褰?鑴?* | 闂呮劘妫岄崚鎵兇缂佺喐澧惄?|
+| **Quit 閹稿鎸?* | 瀵湱鐛ラ柅澶嬪閵嗗矂鈧偓閸戞亽鈧秵鍨ㄩ妴灞炬付鐏忓繐瀵查崚鐗堝閻╂ǜ鈧?|
+| **閹垫娲忓锕傛暛** | 閺勫墽銇氱粣妤€褰?|
+| **閹垫娲忛崣鎶芥暛** | 韫囶偊鈧喎鍨忛幑?/ 闁偓閸?|
 
-### VPN 注意事项
-
-由于网络环境原因：
-
+### VPN 濞夈劍鍓版禍瀣€?
+閻㈠彉绨純鎴犵捕閻滎垰顣ㄩ崢鐔锋礈閿?
 ```
-开 VPN → 启动 Codex（OpenAI 需要）
-  ├─ 切 DeepSeek → 关 VPN（直连国内更稳定）
-  └─ 保持 OpenAI → 保持 VPN
+瀵偓 VPN 閳?閸氼垰濮?Codex閿涘湦penAI 闂団偓鐟曚緤绱?  閳规壕鏀?閸?DeepSeek 閳?閸?VPN閿涘牏娲挎潻鐐叉禇閸愬懏娲跨粙鍐茬暰閿?  閳规柡鏀?娣囨繃瀵?OpenAI 閳?娣囨繃瀵?VPN
 ```
 
-理想方案：在 VPN 客户端设置 split tunneling，仅 `api.openai.com` 走 VPN 隧道。
+閻炲棙鍏傞弬瑙勵攳閿涙艾婀?VPN 鐎广垺鍩涚粩顖濐啎缂?split tunneling閿涘奔绮?`api.openai.com` 鐠?VPN 闂呇囦壕閵?
+---
+
+## 閹搭亜娴?
+```
+
+閳瑰备鏀㈤埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞?閳? Codex Config Switcher                               閳?閳规壕鏀㈤埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞?閳?                                                     閳?閳? 閳瑰备鏀㈤埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞?閳瑰备鏀㈤埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞?          閳?閳? 閳? Switch to       閳?閳? Switch to       閳?          閳?閳? 閳? OpenAI          閳?閳? DeepSeek        閳?          閳?閳? 閳规柡鏀㈤埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞?閳规柡鏀㈤埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞?          閳?閳?                                                     閳?閳? Current: DeepSeek       Moon Bridge: running        閳?閳?                                                     閳?閳? 閳瑰备鏀?Log 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳?閳?閳? 閳?[10:00] Switching to DeepSeek ...               閳?閳?閳? 閳?[10:00] Starting Moon Bridge ...                閳?閳?閳? 閳?[10:05] Moon Bridge ready (127.0.0.1:38440)     閳?閳?閳? 閳?[10:05] Configuration switched. Please start    閳?閳?閳? 閳?        Codex manually.                         閳?閳?閳? 閳规柡鏀㈤埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞?閳?閳?                                                     閳?閳? 閳?Start on boot    [Set MB path] [Stop MB] [Quit]  閳?閳规柡鏀㈤埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞鈧埞?```
 
 ---
 
-## 截图
-
-```
-
-┌──────────────────────────────────────────────────────┐
-│  Codex Config Switcher                               │
-├──────────────────────────────────────────────────────┤
-│                                                      │
-│  ┌──────────────────┐ ┌──────────────────┐           │
-│  │  Switch to       │ │  Switch to       │           │
-│  │  OpenAI          │ │  DeepSeek        │           │
-│  └──────────────────┘ └──────────────────┘           │
-│                                                      │
-│  Current: DeepSeek       Moon Bridge: running        │
-│                                                      │
-│  ┌─ Log ───────────────────────────────────────────┐ │
-│  │ [10:00] Switching to DeepSeek ...               │ │
-│  │ [10:00] Starting Moon Bridge ...                │ │
-│  │ [10:05] Moon Bridge ready (127.0.0.1:38440)     │ │
-│  │ [10:05] Configuration switched. Please start    │ │
-│  │         Codex manually.                         │ │
-│  └──────────────────────────────────────────────────┘ │
-│                                                      │
-│  ☐ Start on boot    [Set MB path] [Stop MB] [Quit]  │
-└──────────────────────────────────────────────────────┘
-```
-
----
-
-## 项目结构
-
+## 妞ゅ湱娲扮紒鎾寸€?
 ```
 CodexSwitch/
-├── CodexSwitch.exe         ← 编译好的可执行文件
-├── main.py                 ← 入口
-│
-├── core/
-│   ├── models.py           ← 数据模型（ProfileType, MoonBridgeStatus 等）
-│   ├── config_manager.py   ← 配置持久化 + 注册表管理
-│   ├── config_switcher.py  ← Codex 配置切换
-│   ├── moon_bridge.py      ← 编译、启动、停止、健康检查
-│   └── codex_launcher.py   ← Codex 进程查找与管理
-│
-├── app/
-│   ├── theme.py            ← 主题系统（LIGHT / DARK）
-│   ├── ui.py               ← customtkinter 主窗口
-│   └── tray.py             ← 系统托盘
-│
-├── docs/
-│   ├── architecture.md     ← 软件架构说明
-│   └── development.md      ← 功能开发说明
-│
-├── logs/
-│   └── changelog.md        ← v1.0.0 ~ v1.0.6 完整变更日志
-│
-├── requirements.txt
-├── config.yaml
-└── CodexSwitch.spec        ← PyInstaller 打包配置
+閳规壕鏀㈤埞鈧?CodexSwitch.exe         閳?缂傛牞鐦ф總鐣屾畱閸欘垱澧界悰灞炬瀮娴?閳规壕鏀㈤埞鈧?main.py                 閳?閸忋儱褰?閳?閳规壕鏀㈤埞鈧?core/
+閳?  閳规壕鏀㈤埞鈧?models.py           閳?閺佺増宓佸Ο鈥崇€烽敍鍦ofileType, MoonBridgeStatus 缁涘绱?閳?  閳规壕鏀㈤埞鈧?config_manager.py   閳?闁板秶鐤嗛幐浣风畽閸?+ 濞夈劌鍞界悰銊ь吀閻?閳?  閳规壕鏀㈤埞鈧?config_switcher.py  閳?Codex 闁板秶鐤嗛崚鍥ㄥ床
+閳?  閳规壕鏀㈤埞鈧?moon_bridge.py      閳?缂傛牞鐦ч妴浣告儙閸斻劊鈧礁浠犲顫偓浣镐淮鎼撮攱顥呴弻?閳?  閳规柡鏀㈤埞鈧?codex_launcher.py   閳?Codex 鏉╂稓鈻奸弻銉﹀娑撳海顓搁悶?閳?閳规壕鏀㈤埞鈧?app/
+閳?  閳规壕鏀㈤埞鈧?theme.py            閳?娑撳顣界化鑽ょ埠閿涘湢IGHT / DARK閿?閳?  閳规壕鏀㈤埞鈧?ui.py               閳?customtkinter 娑撹崵鐛ラ崣?閳?  閳规柡鏀㈤埞鈧?tray.py             閳?缁崵绮洪幍妯兼磸
+閳?閳规壕鏀㈤埞鈧?docs/
+閳?  閳规壕鏀㈤埞鈧?architecture.md     閳?鏉烆垯娆㈤弸鑸电€拠瀛樻
+閳?  閳规柡鏀㈤埞鈧?development.md      閳?閸旂喕鍏樺鈧崣鎴ｎ嚛閺?閳?閳规壕鏀㈤埞鈧?logs/
+閳?  閳规柡鏀㈤埞鈧?changelog.md        閳?v1.0.0 ~ v1.0.6 鐎瑰本鏆ｉ崣妯绘纯閺冦儱绻?閳?閳规壕鏀㈤埞鈧?requirements.txt
+閳规壕鏀㈤埞鈧?config.yaml
+閳规柡鏀㈤埞鈧?CodexSwitch.spec        閳?PyInstaller 閹垫挸瀵橀柊宥囩枂
 ```
 
 ---
 
-## 自行构建
+## 閼奉亣顢戦弸鍕紦
 
-需要 Python 3.10+：
-
+闂団偓鐟?Python 3.10+閿?
 ```powershell
-cd F:\VibeCoding\AutoStartCodex
+cd F:\VibeCoding\CodexSwitch
 python -m pip install -r requirements.txt
 python -m pip install pyinstaller
 python -m PyInstaller --onefile --windowed --name CodexSwitch `
   --add-data "core;core" --add-data "app;app" main.py
 ```
 
-输出：`dist\CodexSwitch.exe`
+鏉堟挸鍤敍姝歞ist\CodexSwitch.exe`
 
-或用 spec 文件（参数已在其中）：
-```powershell
+閹存牜鏁?spec 閺傚洣娆㈤敍鍫濆棘閺佹澘鍑￠崷銊ュ従娑擃叏绱氶敍?```powershell
 python -m PyInstaller CodexSwitch.spec
 ```
 
 ---
 
-## 技术栈
-
-| 组件 | 用途 |
+## 閹垛偓閺堫垱鐖?
+| 缂佸嫪娆?| 閻劑鈧?|
 |------|------|
-| Python 3.12 | 运行环境 |
-| customtkinter | 桌面 GUI |
-| pystray | 系统托盘 |
-| PyYAML | 配置读写 |
-| Pillow | 托盘图标 |
-| PyInstaller | 打包为单 exe |
-| Go (编译 Moon Bridge) | Moon Bridge 编译 |
+| Python 3.12 | 鏉╂劘顢戦悳顖氼暔 |
+| customtkinter | 濡楀矂娼?GUI |
+| pystray | 缁崵绮洪幍妯兼磸 |
+| PyYAML | 闁板秶鐤嗙拠璇插晸 |
+| Pillow | 閹垫娲忛崶鐐垼 |
+| PyInstaller | 閹垫挸瀵樻稉鍝勫礋 exe |
+| Go (缂傛牞鐦?Moon Bridge) | Moon Bridge 缂傛牞鐦?|
 
 ---
 
-## 开源协议
-
+## 瀵偓濠ф劕宕楃拋?
 MIT

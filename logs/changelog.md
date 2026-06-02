@@ -9,11 +9,11 @@
   prompts the user to start Codex manually via a dialog.
 - **Switch flow redesigned**:
   1. Before switching profiles, checks if Codex is currently running
-  2. If running + profile is changing 鈫?shows confirmation dialog asking user
+  2. If running + profile is changing 閳?shows confirmation dialog asking user
      to save work before closing Codex
-  3. If user confirms 鈫?closes Codex, switches config, prompts manual start
-  4. If Codex is not running 鈫?switches config directly, prompts manual start
-  5. If already on target profile 鈫?only manages Moon Bridge, no Codex action
+  3. If user confirms 閳?closes Codex, switches config, prompts manual start
+  4. If Codex is not running 閳?switches config directly, prompts manual start
+  5. If already on target profile 閳?only manages Moon Bridge, no Codex action
 
 ### Added
 
@@ -29,6 +29,12 @@
 
 - `_switch_sync` no longer calls `self.codex.restart()`. All Codex launch logic
   removed. Kill logic kept and only runs when user confirms.
+
+### Cleanup
+
+- **Removed root `config.yaml`**: the root-level `config.yaml` was a stale
+  template. The actual config is auto-generated at
+  `~/.codex-switcher/config.yaml` on first run.
 
 ### Build
 
@@ -86,7 +92,7 @@
 
 - **Quit dialog**: clicking Quit shows a custom dialog with two choices:
   "Exit" (stop MB + quit) or "Minimize to Tray" (withdraw).
-  Window close button (闁? still withdraws silently 闂?no dialog.
+  Window close button (闂? still withdraws silently 闂?no dialog.
 - **System tray Exit**: right-click 闂?Exit in tray directly calls
   `_handle_quit()` (stop MB + quit), no dialog.
 
