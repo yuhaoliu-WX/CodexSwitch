@@ -1,6 +1,6 @@
 # CodexSwitch Architecture
 
-> Version: v1.0.1 | Updated: 2026-06-02
+> Version: v1.0.2 | Updated: 2026-06-02
 
 ## Overview
 
@@ -14,9 +14,10 @@ process lifecycle.
 CodexSwitch/
 +-- main.py                  # Entry point
 +-- requirements.txt         # Python dependencies
-+-- CodexSwitch.spec         # PyInstaller build config
++-- CodexSwitch.spec         # PyInstaller build config (dynamic version + icon)
 |
 +-- core/                    # Business logic
+|   +-- __init__.py          # Package version (__version__)
 |   +-- models.py            # Data models and enums
 |   +-- config_manager.py    # Config persistence + registry autostart
 |   +-- config_switcher.py   # Codex config file switching
@@ -25,8 +26,14 @@ CodexSwitch/
 |
 +-- app/                     # GUI layer
 |   +-- theme.py             # Theme system (LIGHT / DARK)
-|   +-- ui.py                # customtkinter main window
-|   +-- tray.py              # System tray (pystray)
+|   +-- ui.py                # customtkinter main window (window icon)
+|   +-- tray.py              # System tray (pystray) (tray icon)
+|
++-- assets/                  # Static resources
+|   +-- icons/
+|       +-- arrow.ico        # EXE + window icon (multi-res ICO)
+|       +-- arrow_tray.png   # System tray icon (PNG, 64×64)
+|       +-- old/             # Legacy icons
 |
 +-- docs/
 |   +-- architecture.md      # This file
