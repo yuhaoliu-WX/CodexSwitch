@@ -1,4 +1,11 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
+import platform
+
+# 将项目根目录加入 sys.path，以便导入版本号
+sys.path.insert(0, SPECPATH)
+from core import __version__
+
 from PyInstaller.utils.hooks import collect_submodules
 
 hiddenimports = ['customtkinter', 'pystray', 'PIL', 'yaml', 'winreg']
@@ -27,7 +34,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='CodexSwitch',
+    name=f'CodexSwitch-{__version__}-{platform.machine().lower()}',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
