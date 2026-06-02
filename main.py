@@ -1,266 +1,133 @@
-"""-odex-witch - -odex -onfig -witcher entry point."""
+"""CodexSwitch -?Codex Config Switcher entry point.
 
-
-
--sage-
-
-    python main.py          # -pen - window
-
-    python main.py -tray   # -tart minimized to system tray
-
+Usage:
+    python main.py          # Open GUI window
+    python main.py --tray   # Start minimized to system tray
 """
 
-
-
-from __f-t-re__ import annotations
-
-
+from __future__ import annotations
 
 import sys
-
 import threading
 
+from core.config_manager import ConfigManager
+from core.config_switcher import ConfigSwitcher
+from core.moon_bridge import MoonBridgeManager
+from core.codex_launcher import CodexLauncher
 
 
-from core.config_manager import -onfig-anager
-
-from core.config_switcher import -onfig-witcher
-
-from core.moon_bridge import -oon-ridge-anager
-
-from core.codex_la-ncher import -odex-a-ncher
-
-
-
-
-
-def main()-
-
-    config_mgr - -onfig-anager()
-
+def main():
+    config_mgr = ConfigManager()
     config_mgr.load()
 
+    switcher = ConfigSwitcher(config_mgr)
+    moonbridge = MoonBridgeManager()
+    codex = CodexLauncher()
 
-
-    switcher - -onfig-witcher(config_mgr)
-
-    moonbridge - -oon-ridge-anager()
-
-    codex - -odex-a-ncher()
-
-
-
-    mb_dir - config_mgr.get_moonbridge_dir()
-
-    if mb_dir-
-
+    mb_dir = config_mgr.get_moonbridge_dir()
+    if mb_dir:
         moonbridge.set_path(str(mb_dir))
 
+    start_minimized = "--tray" in sys.argv
+
+    if config_mgr.config.auto_start and not start_minimized:
+        _auto_start(config_mgr, switcher, moonbridge, codex)
+
+    _start_gui(config_mgr, switcher, moonbridge, codex, start_minimized)
 
 
-    start_minimized - "-tray" in sys.argv
+def _auto_start(
+    config_mgr: ConfigManager,
+    switcher: ConfigSwitcher,
+    moonbridge: MoonBridgeManager,
+    codex: CodexLauncher,
+) -> None:
+    target = config_mgr.config.default_profile
+    success, msg = switcher.switch_to(target)
+    if not success:
+        print(f"[autostart] Config switch failed: {msg}")
+        return
 
-
-
-    if config_mgr.config.a-to_start and not start_minimized-
-
-        _a-to_start(config_mgr, switcher, moonbridge, codex)
-
-
-
-    _start_g-i(config_mgr, switcher, moonbridge, codex, start_minimized)
-
-
-
-
-
-def _a-to_start(
-
-    config_mgr- -onfig-anager,
-
-    switcher- -onfig-witcher,
-
-    moonbridge- -oon-ridge-anager,
-
-    codex- -odex-a-ncher,
-
-) - -one-
-
-    target - config_mgr.config.defa-lt_profile
-
-    s-ccess, msg - switcher.switch_to(target)
-
-    if not s-ccess-
-
-        print(f"-a-tostart] -onfig switch failed- {msg}")
-
-        ret-rn
-
-
-
-    if target.needs_moonbridge-
-
-        mb_dir - config_mgr.get_moonbridge_dir()
-
-        if mb_dir-
-
+    if target.needs_moonbridge:
+        mb_dir = config_mgr.get_moonbridge_dir()
+        if mb_dir:
             moonbridge.set_path(str(mb_dir))
+            if not moonbridge.is_running():
+                success, msg = moonbridge.start()
+                if not success:
+                    print(f"[autostart] Moon Bridge start failed: {msg}")
+                    return
 
-            if not moonbridge.is_r-nning()-
-
-                s-ccess, msg - moonbridge.start()
-
-                if not s-ccess-
-
-                    print(f"-a-tostart] -oon -ridge start failed- {msg}")
-
-                    ret-rn
-
-
-
-    s-ccess, msg - codex.la-nch()
-
-    print(f"-a-tostart] {msg}")
+    success, msg = codex.launch()
+    print(f"[autostart] {msg}")
 
 
 
 
-
-
-
-
-
-def _on_f-ll_q-it(app)-
-
-    """-lly q-it the application, stopping -oon -ridge first."""
-
-    app.q-it()
-
+def _on_full_quit(app):
+    """Fully quit the application, stopping Moon Bridge first."""
+    app.quit()
     app.destroy()
 
 
+def _start_gui(
+    config_mgr: ConfigManager,
+    switcher: ConfigSwitcher,
+    moonbridge: MoonBridgeManager,
+    codex: CodexLauncher,
+    start_minimized: bool,
+) -> None:
+    from app.ui import MainWindow
 
+    app = MainWindow(config_mgr, switcher, moonbridge, codex, quit_callback=lambda: _on_full_quit(app))
 
-
-def _start_g-i(
-
-    config_mgr- -onfig-anager,
-
-    switcher- -onfig-witcher,
-
-    moonbridge- -oon-ridge-anager,
-
-    codex- -odex-a-ncher,
-
-    start_minimized- bool,
-
-) - -one-
-
-    from app.-i import -ain-indow
-
-
-
-    app - -ain-indow(config_mgr, switcher, moonbridge, codex, q-it_callback-lambda- _on_f-ll_q-it(app))
-
-
-
-    if start_minimized-
-
+    if start_minimized:
         app.withdraw()
 
-
-
-    # -lways start system tray (for window close -tray, q-ick switches)
-
+    # Always start system tray (for window close -?tray, quick switches)
     _start_tray_async(config_mgr, moonbridge, app)
-
-
 
     app.mainloop()
 
 
+def _start_tray_async(config_mgr, moonbridge, app):
+    from app.tray import TrayManager
 
-
-
-def _start_tray_async(config_mgr, moonbridge, app)-
-
-    from app.tray import -ray-anager
-
-
-
-    tray - -ray-anager(
-
-        on_switch_openai-lambda- _tray_switch("openai", config_mgr, moonbridge, app),
-
-        on_switch_deepseek-lambda- _tray_switch("deepseek", config_mgr, moonbridge, app),
-
-        on_show_window-lambda- app.after(-, app.deiconify),
-
-        on_q-it-app._handle_q-it,
-
+    tray = TrayManager(
+        on_switch_openai=lambda: _tray_switch("openai", config_mgr, moonbridge, app),
+        on_switch_deepseek=lambda: _tray_switch("deepseek", config_mgr, moonbridge, app),
+        on_show_window=lambda: app.after(0, app.deiconify),
+        on_quit=app._handle_quit,
     )
 
-
-
-    def r-n_tray()-
-
+    def run_tray():
         tray.start()
 
-
-
-    t - threading.-hread(target-r-n_tray, daemon-r-e)
-
+    t = threading.Thread(target=run_tray, daemon=True)
     t.start()
 
 
+def _tray_switch(profile_name, config_mgr, moonbridge, app):
+    from core.models import ProfileType
+    from core.config_switcher import ConfigSwitcher
+    from core.codex_launcher import CodexLauncher
 
+    target = ProfileType(profile_name)
+    switcher = ConfigSwitcher(config_mgr)
+    codex = CodexLauncher()
 
-
-def _tray_switch(profile_name, config_mgr, moonbridge, app)-
-
-    from core.models import -rofile-ype
-
-    from core.config_switcher import -onfig-witcher
-
-    from core.codex_la-ncher import -odex-a-ncher
-
-
-
-    target - -rofile-ype(profile_name)
-
-    switcher - -onfig-witcher(config_mgr)
-
-    codex - -odex-a-ncher()
-
-
-
-    if target.needs_moonbridge-
-
-        mb_dir - config_mgr.get_moonbridge_dir()
-
-        if mb_dir-
-
+    if target.needs_moonbridge:
+        mb_dir = config_mgr.get_moonbridge_dir()
+        if mb_dir:
             moonbridge.set_path(str(mb_dir))
-
-            if not moonbridge.is_r-nning()-
-
+            if not moonbridge.is_running():
                 moonbridge.start()
 
-
-
     switcher.switch_to(target)
-
     codex.restart()
-
-    app.after(-, lambda- getattr(app, "_refresh_state", lambda- -one)())
-
+    app.after(0, lambda: getattr(app, "_refresh_state", lambda: None)())
 
 
-
-
-if __name__ - "__main__"-
-
+if __name__ == "__main__":
     main()
-
-
 
