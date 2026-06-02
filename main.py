@@ -84,7 +84,7 @@ def _start_gui(
     if start_minimized:
         app.withdraw()
 
-    # Always start system tray (for window close ¡ú tray, quick switches)
+    # Always start system tray (for window close --tray, quick switches)
     _start_tray_async(config_mgr, moonbridge, app)
 
     app.mainloop()
