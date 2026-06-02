@@ -1,6 +1,6 @@
 # CodexSwitch Development Notes
 
-> Version: v1.0.1 | Updated: 2026-06-02
+> Version: v1.0.2 | Updated: 2026-06-02
 
 ## Design Decisions
 
@@ -111,13 +111,59 @@ stops Moon Bridge first.
 ```powershell
 pip install -r requirements.txt
 pip install pyinstaller
-pyinstaller --onefile --windowed --name CodexSwitch ^
-  --add-data "core;core" --add-data "app;app" main.py
 ```
 
-Or using spec file:
+Using spec file (recommended):
 ```powershell
-pyinstaller CodexSwitch.spec
+pyinstaller CodexSwitch.spec --clean
 ```
 
-Output: dist\CodexSwitch.exe
+Or command line:
+```powershell
+pyinstaller --onefile --windowed --name CodexSwitch-1.0.2-amd64 ^
+  --add-data "core;core" --add-data "app;app" --add-data "assets;assets" ^
+  --icon "assets\icons\arrow.ico" main.py
+```
+
+Output: `dist\CodexSwitch-<version>-<arch>.exe`
+
+### Dynamic version naming
+
+The executable name is generated dynamically from `core/__version__` and
+`platform.machine().lower()`, producing e.g. `CodexSwitch-1.0.2-amd64.exe`.
+
+The spec file imports the version at build time via:
+```python
+sys.path.insert(0, SPECPATH)
+from core import __version__
+```
+
+### Icon assets
+
+| Asset | Purpose | Format |
+|-------|---------|--------|
+| `assets/icons/arrow.ico` | EXE icon + window taskbar icon | ICO (multi-res: 16/32/64/128/256) |
+| `assets/icons/arrow_tray.png` | System tray icon (pystray) | PNG, 64×64 RGBA |
+
+- ICO file is embedded via `icon=` in `EXE()` within the spec file.
+- Window taskbar icon is set via `self.iconbitmap()` in `app/ui.py`.
+- Tray icon is loaded from `arrow_tray.png` in `app/tray.py`.
+- All asset paths use `_resource_path()` / `_tray_icon_path()` helpers that
+  resolve correctly both in development (`__file__`-relative) and in the
+  PyInstaller bundle (`sys._MEIPASS`-relative).
+
+### Resource path resolution
+
+When accessing bundled files (icons, configs, etc.), always use a helper to
+handle the path difference between development and PyInstaller bundle mode:
+
+```python
+import os
+import sys
+
+def resource_path(relative: str) -> str:
+    """Get absolute path, works in dev and PyInstaller bundle."""
+    if getattr(sys, "frozen", False):
+        return os.path.join(sys._MEIPASS, relative)
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', relative)
+```

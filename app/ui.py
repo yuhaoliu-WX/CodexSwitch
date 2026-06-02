@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+import sys
 import threading
 import time
 from pathlib import Path
@@ -17,6 +19,13 @@ from core.codex_launcher import CodexLauncher
 from app.theme import LIGHT, FONT_TITLE, FONT_BODY, FONT_SMALL, FONT_BUTTON, FONT_MONO
 
 THEME = LIGHT  # Current theme dict, swap to DARK later if needed
+
+
+def _resource_path(relative: str) -> str:
+    """Get absolute path to a resource, works both in dev and PyInstaller bundle."""
+    if getattr(sys, "frozen", False):
+        return os.path.join(sys._MEIPASS, relative)
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', relative)
 
 
 class MainWindow(ctk.CTk):
@@ -44,6 +53,13 @@ class MainWindow(ctk.CTk):
         self.minsize(640, 400)
         ctk.set_appearance_mode("light")
         ctk.set_default_color_theme("green")
+
+        # Set window icon (taskbar & title bar)
+        ico_path = _resource_path(os.path.join('assets', 'icons', 'arrow.ico'))
+        try:
+            self.iconbitmap(ico_path)
+        except Exception:
+            pass  # fallback if icon file not found
 
         self.update_idletasks()
         sw = self.winfo_screenwidth()

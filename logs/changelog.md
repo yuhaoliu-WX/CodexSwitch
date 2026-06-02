@@ -1,5 +1,27 @@
 # CodexSwitch 更新日志
 
+## v1.0.2 (2026-06-02)
+
+### 新增
+
+- **动态版本命名**：生成的可执行文件自动包含版本号和架构，如 `CodexSwitch-1.0.2-amd64.exe`，版本号统一从 `core/__init__.py` 的 `__version__` 读取
+- **自定义图标系统**：
+  - EXE/任务栏图标：`assets/icons/arrow.ico`（多尺寸 16/32/64/128/256）
+  - 系统托盘图标：`assets/icons/arrow_tray.png`（64×64 RGBA）
+  - 窗口图标通过 `self.iconbitmap()` 设置，托盘图标从 PNG 加载
+
+### 变更
+
+- **构建配置更新**：`CodexSwitch.spec` 加入 `assets` 目录打包，`EXE()` 增加 `icon` 参数
+- **资源路径处理**：`app/ui.py` 新增 `_resource_path()` 函数，`app/tray.py` 新增 `_tray_icon_path()` 函数，确保开发环境和打包后都能正确找到资源文件
+
+### 文档
+
+- `docs/development.md`：新增动态版本命名、图标资产、资源路径解析章节
+- `docs/architecture.md`：项目结构图加入 `assets/` 目录
+
+---
+
 ## v1.0.1 (2026-06-02)
 
 ### 变更

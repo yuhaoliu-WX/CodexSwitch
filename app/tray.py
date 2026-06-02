@@ -2,39 +2,22 @@
 
 from __future__ import annotations
 
+import os
+import sys
 from typing import Optional, Callable
 
-from PIL import Image, ImageDraw
+from PIL import Image
 
 from core.models import ProfileType, MoonBridgeStatus
 
-# ── Generate a simple tray icon ─────────────────────────────────
-ICON_SIZE = 64
+# ── Load tray icon from assets ──────────────────────────────────
+def _tray_icon_path() -> str:
+    """Get tray icon path, works both in dev and PyInstaller bundle."""
+    if getattr(sys, "frozen", False):
+        return os.path.join(sys._MEIPASS, 'assets', 'icons', 'arrow_tray.png')
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'assets', 'icons', 'arrow_tray.png')
 
-
-def _generate_icon() -> Image.Image:
-    """Generate a simple colored icon for the system tray."""
-    img = Image.new("RGBA", (ICON_SIZE, ICON_SIZE), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
-
-    draw.ellipse([2, 2, ICON_SIZE - 2, ICON_SIZE - 2], fill="#2B2B3D", outline="#4FC3F7", width=3)
-
-    cx, cy = ICON_SIZE // 2, ICON_SIZE // 2
-    r_inner = 14
-    draw.ellipse(
-        [cx - r_inner, cy - r_inner, cx + r_inner, cy + r_inner],
-        outline="#4FC3F7", width=3,
-    )
-
-    draw.polygon(
-        [(cx + 4, cy - 8), (cx + 4, cy + 8), (cx + 16, cy)],
-        fill="#4FC3F7",
-    )
-
-    return img
-
-
-ICON_IMAGE = _generate_icon()
+ICON_IMAGE = Image.open(_tray_icon_path()).resize((64, 64), Image.LANCZOS)
 
 
 class TrayManager:
