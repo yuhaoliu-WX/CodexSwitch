@@ -14,3 +14,7 @@ Thumbs.db
 
 # User config (regenerated on first run)
 config.yaml
+
+# Codex user config (personal API keys, etc.)
+.codex/
+.codex-switcher/

@@ -59,7 +59,7 @@ VPN 开启 → 启动 Codex（OpenAI 需要 VPN）
 需要 Python 3.10+：
 
 ```powershell
-cd F:\VibeCoding\CodexSwitch
+cd path\to\CodexSwitch
 pip install -r requirements.txt
 pip install pyinstaller
 pyinstaller CodexSwitch.spec
