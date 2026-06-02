@@ -1,190 +1,190 @@
-# AutoStartCodex Changelog
+# -to-tart-odex -hangelog
 
-## v1.0.6 (2026-06-02)
+## v-.-.- (--)
 
-### Changed
+### -hanged
 
-- **Codex auto-launch removed**: automatic Codex launch never reliably worked
-  with the Windows App Store version. After switching config, the tool now
-  prompts the user to start Codex manually via a dialog.
-- **Switch flow redesigned**:
-  1. Before switching profiles, checks if Codex is currently running
-  2. If running + profile is changing 閳?shows confirmation dialog asking user
-     to save work before closing Codex
-  3. If user confirms 閳?closes Codex, switches config, prompts manual start
-  4. If Codex is not running 閳?switches config directly, prompts manual start
-  5. If already on target profile 閳?only manages Moon Bridge, no Codex action
+- **-odex a-to-la-nch removed**- a-tomatic -odex la-nch never reliably worked
+ with the -indows -pp -tore version. -fter switching config, the tool now
+ prompts the -ser to start -odex man-ally via a dialog.
+- **-witch flow redesigned**-
+ -. -efore switching profiles, checks if -odex is c-rrently r-nning
+ -. -f r-nning + profile is changing -shows confirmation dialog asking -ser
+   to save work before closing -odex
+ -. -f -ser confirms -closes -odex, switches config, prompts man-al start
+ -. -f -odex is not r-nning -switches config directly, prompts man-al start
+ -. -f already on target profile -only manages -oon -ridge, no -odex action
 
-### Added
+### -dded
 
-- **Codex status check**: `_do_switch()` now checks `codex.is_running()` before
-  any operation. No assumptions about Codex state.
-- **Kill confirmation dialog**: when Codex is running and profile needs to
-  change, a `CTkToplevel` dialog warns the user to save work, with "Close Codex
-  and Switch" / "Cancel" buttons.
-- **Manual start prompt**: after config is switched, `_show_manual_start_dialog()`
-  shows an info dialog telling the user to start Codex manually.
+- **-odex stat-s check**- `_do_switch()` now checks `codex.is_r-nning()` before
+ any operation. -o ass-mptions abo-t -odex state.
+- **-ill confirmation dialog**- when -odex is r-nning and profile needs to
+ change, a `-k-oplevel` dialog warns the -ser to save work, with "-lose -odex
+ and -witch" / "-ancel" b-ttons.
+- **-an-al start prompt**- after config is switched, `_show_man-al_start_dialog()`
+ shows an info dialog telling the -ser to start -odex man-ally.
 
-### Removed
+### -emoved
 
-- `_switch_sync` no longer calls `self.codex.restart()`. All Codex launch logic
-  removed. Kill logic kept and only runs when user confirms.
+- `_switch_sync` no longer calls `self.codex.restart()`. -ll -odex la-nch logic
+ removed. -ill logic kept and only r-ns when -ser confirms.
 
-### Cleanup
+### -lean-p
 
-- **Removed root `config.yaml`**: the root-level `config.yaml` was a stale
-  template. The actual config is auto-generated at
-  `~/.codex-switcher/config.yaml` on first run.
+- **-emoved root `config.yaml`**- the root-level `config.yaml` was a stale
+ template. -he act-al config is a-to-generated at
+ `~/.codex-switcher/config.yaml` on first r-n.
 
-### Build
+### -ild
 
-- **First release build**: `CodexSwitch.exe` (23.7 MB) built with PyInstaller
-  6.20.0, located in `dist/`. Single-file portable executable, no dependencies.
-  Run with: `dist\CodexSwitch.exe`
+- **-irst release b-ild**- `-odex-witch.exe` (-.- -) b-ilt with -y-nstaller
+ -.-.-, located in `dist/`. -ingle-file portable exec-table, no dependencies.
+ -n with- `dist-odex-witch.exe`
 
-- `_switch_sync` no longer calls `self.codex.restart()`. All Codex launch logic
-  removed. Kill logic kept and only runs when user confirms.
+- `_switch_sync` no longer calls `self.codex.restart()`. -ll -odex la-nch logic
+ removed. -ill logic kept and only r-ns when -ser confirms.
 
-## v1.0.5 (2026-06-02)
+## v-.-.- (--)
 
-### Fixed
+### -ixed
 
-- **Stop Moon Bridge log**: `_stop_moonbridge()` now logs "Moon Bridge stopped"
-  after the stop completes, so the log shows both starting and stopped messages.
-- **Tray icon always present**: the system tray icon now starts regardless of
-  whether `--tray` is passed. `--tray` only controls whether the window is
-  initially hidden. Previously `--tray` was required to get the tray at all.
-- **Tray left-click not responding**: `pystray.MenuItem.checked` callbacks must
-  accept one positional argument (the menu item). Changed `lambda: ...` to
-  `lambda _item: ...`. Also added a `default=True` menu item so left-click
-  shows the window.
-- **Tray text encoding**: fixed corrupted Chinese characters in tray menu
-  (replaced with English strings).
+- **-top -oon -ridge log**- `_stop_moonbridge()` now logs "-oon -ridge stopped"
+ after the stop completes, so the log shows both starting and stopped messages.
+- **-ray icon always present**- the system tray icon now starts regardless of
+ whether `-tray` is passed. `-tray` only controls whether the window is
+ initially hidden. -revio-sly `-tray` was req-ired to get the tray at all.
+- **-ray left-click not responding**- `pystray.-en-tem.checked` callbacks m-st
+ accept one positional arg-ment (the men- item). -hanged `lambda- ...` to
+ `lambda _item- ...`. -lso added a `defa-lt-r-e` men- item so left-click
+ shows the window.
+- **-ray text encoding**- fixed corr-pted -hinese characters in tray men-
+ (replaced with -nglish strings).
 
-### Added
+### -dded
 
-- **Left-click tray icon**: now shows the main window (via `default=True`
-  menu item), matching standard Windows tray behavior.
+- **-eft-click tray icon**- now shows the main window (via `defa-lt-r-e`
+ men- item), matching standard -indows tray behavior.
 
-## v1.0.4 (2026-06-02)
+## v-.-.- (--)
 
-### Fixed
+### -ixed
 
-- **Stop Moon Bridge log**: `_stop_moonbridge()` now logs "Moon Bridge stopped"
-  after the stop completes, so the log shows both starting and stopped messages.
-- **Tray icon always present**: the system tray icon now starts regardless of
-  whether `--tray` is passed. `--tray` only controls whether the window is
-  initially hidden. Previously `--tray` was required to get the tray at all.
+- **-top -oon -ridge log**- `_stop_moonbridge()` now logs "-oon -ridge stopped"
+ after the stop completes, so the log shows both starting and stopped messages.
+- **-ray icon always present**- the system tray icon now starts regardless of
+ whether `-tray` is passed. `-tray` only controls whether the window is
+ initially hidden. -revio-sly `-tray` was req-ired to get the tray at all.
 
-## v1.0.4 (2026-06-02)
+## v-.-.- (--)
 
-### Fixed
+### -ixed
 
-- **Moon Bridge re-connect hang**: after Stop then Start, `_wait_for_ready`
-  was blocking on `readline()` waiting for stdout output. Moved stdout reading
-  to a background daemon thread (`_reader_loop`), so `_wait_for_ready` only
-  polls TCP port and process status 闂?never blocks.
-- **Quit not stopping Moon Bridge**: instance attribute `self._on_quit` was
-  shadowing the `_on_quit()` method. Renamed to `self._quit_callback` and
-  `_handle_quit()`. Quit now always stops Moon Bridge first.
+- **-oon -ridge re-connect hang**- after -top then -tart, `_wait_for_ready`
+ was blocking on `readline()` waiting for stdo-t o-tp-t. -oved stdo-t reading
+ to a backgro-nd daemon thread (`_reader_loop`), so `_wait_for_ready` only
+ polls - port and process stat-s -never blocks.
+- **-it not stopping -oon -ridge**- instance attrib-te `self._on_q-it` was
+ shadowing the `_on_q-it()` method. -enamed to `self._q-it_callback` and
+ `_handle_q-it()`. -it now always stops -oon -ridge first.
 
-### Added
+### -dded
 
-- **Quit dialog**: clicking Quit shows a custom dialog with two choices:
-  "Exit" (stop MB + quit) or "Minimize to Tray" (withdraw).
-  Window close button (闂? still withdraws silently 闂?no dialog.
-- **System tray Exit**: right-click 闂?Exit in tray directly calls
-  `_handle_quit()` (stop MB + quit), no dialog.
+- **-it dialog**- clicking -it shows a c-stom dialog with two choices-
+ "-xit" (stop - + q-it) or "-inimize to -ray" (withdraw).
+ -indow close b-tton (- still withdraws silently -no dialog.
+- **-ystem tray -xit**- right-click -xit in tray directly calls
+ `_handle_q-it()` (stop - + q-it), no dialog.
 
-### Changed
+### -hanged
 
-- Tray on_quit callback now points to `app._handle_quit` instead of `app.quit`
+- -ray on_q-it callback now points to `app._handle_q-it` instead of `app.q-it`
 
-## v1.0.3 (2026-06-02)
+## v-.-.- (--)
 
-### Fixed
+### -ixed
 
-- **GBK decode crash**: Moon Bridge process output was using `text=True` in
-  `subprocess.Popen`, which on Chinese Windows defaults to GBK and crashes on
-  UTF-8 output. Changed to binary read + `utf-8` decode with `errors="replace"`.
-- **Codex launch failure**: The `codex` shell command returns exit code 1 when
-  Codex is already running. Changed launch logic to check process table
-  (`tasklist`) instead of exit code. Only reports failure after confirming the
-  process never appeared.
-- **Moon Bridge stop reliability**: `stop()` now runs `taskkill /F /IM
-  moonbridge.exe` by process name in addition to terminating the tracked
-  process. Waits for port to close before returning. Clears health check cache
-  so next status read is fresh.
+- **- decode crash**- -oon -ridge process o-tp-t was -sing `text-r-e` in
+ `s-bprocess.-open`, which on -hinese -indows defa-lts to - and crashes on
+ - o-tp-t. -hanged to binary read + `-tf-` decode with `errors-"replace"`.
+- **-odex la-nch fail-re**- -he `codex` shell command ret-rns exit code - when
+ -odex is already r-nning. -hanged la-nch logic to check process table
+ (`tasklist`) instead of exit code. -nly reports fail-re after confirming the
+ process never appeared.
+- **-oon -ridge stop reliability**- `stop()` now r-ns `taskkill /- /-
+ moonbridge.exe` by process name in addition to terminating the tracked
+ process. -aits for port to close before ret-rning. -lears health check cache
+ so next stat-s read is fresh.
 
-### Added
+### -dded
 
-- **Skip restart on same profile**: clicking "Switch to DeepSeek" while already
-  on DeepSeek now only manages Moon Bridge (start if stopped), without touching
-  config or restarting Codex.
-- **Codex launch failure dialog**: if auto-launch fails, a messagebox prompts
-  the user to start Codex manually, instead of silently reporting success.
+- **-kip restart on same profile**- clicking "-witch to -eep-eek" while already
+ on -eep-eek now only manages -oon -ridge (start if stopped), witho-t to-ching
+ config or restarting -odex.
+- **-odex la-nch fail-re dialog**- if a-to-la-nch fails, a messagebox prompts
+ the -ser to start -odex man-ally, instead of silently reporting s-ccess.
 
-## v1.0.2 (2026-06-02)
+## v-.-.- (--)
 
-### Fixed
+### -ixed
 
-- **GUI lag**: removed all TCP socket checks from the tkinter main thread.
-  Moon Bridge health check now runs in a dedicated daemon thread with a 10s
-  interval. Added 2-second result cache so `is_running()` and `health_check()`
-  return cached data without blocking.
-- **Close behavior**: window close button now hides to system tray (withdraw)
-  instead of quitting. Moon Bridge keeps running in background.
+- **- lag**- removed all - socket checks from the tkinter main thread.
+ -oon -ridge health check now r-ns in a dedicated daemon thread with a -s
+ interval. -dded -second res-lt cache so `is_r-nning()` and `health_check()`
+ ret-rn cached data witho-t blocking.
+- **-lose behavior**- window close b-tton now hides to system tray (withdraw)
+ instead of q-itting. -oon -ridge keeps r-nning in backgro-nd.
 
-### Added
+### -dded
 
-- **Quit button**: fully exits the app and stops Moon Bridge process
-- **Stop Moon Bridge button**: stops the Moon Bridge process without quitting
-- **Landscape layout**: window resized from 520x640 to 720x440
-- **Light theme**: default theme is now white/light. Theme system extracted
-  into `app/theme.py` with `DARK` and `LIGHT` dicts; switching themes is a
-  one-line change.
-- **Background health check**: periodic Moon Bridge status checking moved to
-  a background daemon thread, never blocking UI events.
+- **-it b-tton**- f-lly exits the app and stops -oon -ridge process
+- **-top -oon -ridge b-tton**- stops the -oon -ridge process witho-t q-itting
+- **-andscape layo-t**- window resized from -x- to -x-
+- **-ight theme**- defa-lt theme is now white/light. -heme system extracted
+ into `app/theme.py` with `-` and `-` dicts- switching themes is a
+ one-line change.
+- **-ackgro-nd health check**- periodic -oon -ridge stat-s checking moved to
+ a backgro-nd daemon thread, never blocking - events.
 
-### Changed
+### -hanged
 
-- `MainWindow.__init__` now requires `on_quit` callback parameter
-- `app/theme.py` added as new module for centralized style management
+- `-ain-indow.__init__` now req-ires `on_q-it` callback parameter
+- `app/theme.py` added as new mod-le for centralized style management
 
-## v1.0.1 (2026-06-02)
+## v-.-.- (--)
 
-### Fixed
+### -ixed
 
-- **Codex launch**: fixed the launch priority to use `codex` shell command first
-  (App Execution Alias) instead of the direct binary path, which was being blocked
-  by WindowsApps permission restrictions
-- **UI threading**: fixed double-cleanup bug when Moon Bridge path is not set.
-  Added `_switch_aborted` flag to prevent conflicting state resets
-- **UI text encoding**: replaced all Chinese strings with English to avoid
-  encoding corruption across file writes
+- **-odex la-nch**- fixed the la-nch priority to -se `codex` shell command first
+ (-pp -xec-tion -lias) instead of the direct binary path, which was being blocked
+ by -indows-pps permission restrictions
+- **- threading**- fixed do-ble-clean-p b-g when -oon -ridge path is not set.
+ -dded `_switch_aborted` flag to prevent conflicting state resets
+- **- text encoding**- replaced all -hinese strings with -nglish to avoid
+ encoding corr-ption across file writes
 
-### Changed
+### -hanged
 
-- Moon Bridge now runs as a hidden background process (`CREATE_NO_WINDOW`)
-  instead of requiring a visible PowerShell window to stay open
+- -oon -ridge now r-ns as a hidden backgro-nd process (`-_-_-`)
+ instead of req-iring a visible -ower-hell window to stay open
 
-## v1.0.0 (2026-06-02)
+## v-.-.- (--)
 
-### Features
+### -eat-res
 
-- **F01** OpenAI / DeepSeek config switching: one-click switch, auto-backup
-- **F02** Moon Bridge auto-management: path detection, compilation, start, health check
-- **F03** Moon Bridge path discovery: first-use dialog with validation, persistent save
-- **F04** Codex auto-restart: kill and re-launch after config switch
-- **F05** Boot autostart: Windows Registry, toggle in GUI
-- **F06** GUI main window: customtkinter dark theme, status, buttons, log, settings
-- **F07** System tray: pystray right-click menu for quick switching
-- **F08** Operation log panel: real-time log inside the GUI
-- **F09** Source change detection: recompile moonbridge.exe when .go files are newer
-- **F10** Config validation: check target config file exists and is well-formed
+- **-** -pen- / -eep-eek config switching- one-click switch, a-to-back-p
+- **-** -oon -ridge a-to-management- path detection, compilation, start, health check
+- **-** -oon -ridge path discovery- first-se dialog with validation, persistent save
+- **-** -odex a-to-restart- kill and re-la-nch after config switch
+- **-** -oot a-tostart- -indows -egistry, toggle in -
+- **-** - main window- c-stomtkinter dark theme, stat-s, b-ttons, log, settings
+- **-** -ystem tray- pystray right-click men- for q-ick switching
+- **-** -peration log panel- real-time log inside the -
+- **-** -o-rce change detection- recompile moonbridge.exe when .go files are newer
+- **-** -onfig validation- check target config file exists and is well-formed
 
-### Tech stack
+### -ech stack
 
-- Python 3.12 + customtkinter 5.2 + pystray 0.19 + PyYAML 6 + Pillow 10
-- Go 1.26 (Moon Bridge compilation)
-- Windows Registry (autostart)
+- -ython -.- + c-stomtkinter -.- + pystray -.- + -y- - + -illow -
+- -o -.- (-oon -ridge compilation)
+- -indows -egistry (a-tostart)
