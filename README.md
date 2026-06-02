@@ -4,6 +4,11 @@ One-click switch Codex config, auto-manage Moon Bridge process.
 
 ---
 
+## Background
+
+The [official Codex + DeepSeek guide](https://github.com/deepseek-ai/awesome-deepseek-agent/blob/main/docs/codex.zh-CN.md) walks through setting up Codex with Moon Bridge — cloning the project, configuring API keys, running `go run`, and generating Codex config files. Switching between OpenAI and DeepSeek meant manually swapping `config.toml`, managing Moon Bridge's terminal process, and toggling VPN. CodexSwitch automates the entire workflow into one click.
+
+
 ## Features
 
 - **One-click config switching**: switch between OpenAI and DeepSeek with one click
