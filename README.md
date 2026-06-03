@@ -52,7 +52,7 @@ No manual editing needed. All settings are managed through the GUI.
 | Tray right-click | Quick switch / Exit |
 
 ### VPN note
-
+In China mainland:
 VPN ON -> Start Codex (OpenAI needs VPN)
   -> Switch to DeepSeek: turn VPN OFF for stability
   -> Stay on OpenAI: keep VPN ON
